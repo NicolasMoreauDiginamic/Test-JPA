@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -13,8 +15,12 @@ public class Compo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private int idLiv;
-	private int idEmp;
+	@ManyToOne
+	@JoinColumn(name="ID_LIV")
+	private Livre idLiv;
+	@ManyToOne
+	@JoinColumn(name="ID_EMP")
+	private Emprunt idEmp;
 	
 	public int getId() {
 		return id;
@@ -22,16 +28,16 @@ public class Compo {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getIdLiv() {
+	public Livre getIdLiv() {
 		return idLiv;
 	}
-	public void setIdLiv(int idLiv) {
+	public void setIdLiv(Livre idLiv) {
 		this.idLiv = idLiv;
 	}
-	public int getIdEmp() {
+	public Emprunt getIdEmp() {
 		return idEmp;
 	}
-	public void setIdEmp(int idEmp) {
+	public void setIdEmp(Emprunt idEmp) {
 		this.idEmp = idEmp;
 	}
 	

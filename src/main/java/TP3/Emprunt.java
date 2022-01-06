@@ -1,9 +1,16 @@
 package TP3;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,10 +19,30 @@ public class Emprunt {
 	
 	@Id
 	private int id;
-	private LocalDateTime dateDebut;
+	@Column(name = "DATE_DEB", nullable = false)
+	private LocalDateTime dateDeb;
+	@Column(name = "DATE_FIN")
 	private LocalDateTime dateFin;
+	@Column(name = "DELAI")
 	private int delai;
-	private int idClient;
+	
+	@ManyToOne
+	@JoinColumn(name="ID_CLIENT")
+	private Client idClient;
+	
+	@ManyToMany
+	@JoinTable(name = "compo", 
+		joinColumns = @JoinColumn(name = "ID_LIV", referencedColumnName = "ID"), 
+		inverseJoinColumns = @JoinColumn(name = "ID_EMP", referencedColumnName = "ID"))
+	private List<Livre> livresEmp;
+	
+	
+	public List<Livre> getLivresEmp() {
+		return livresEmp;
+	}
+	public void setLivresEmp(List<Livre> livresEmp) {
+		this.livresEmp = livresEmp;
+	}
 	
 	public int getId() {
 		return id;
@@ -23,11 +50,11 @@ public class Emprunt {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public LocalDateTime getDateDebut() {
-		return dateDebut;
+	public LocalDateTime getDateDeb() {
+		return dateDeb;
 	}
-	public void setDateDebut(LocalDateTime dateDebut) {
-		this.dateDebut = dateDebut;
+	public void setDateDeb(LocalDateTime dateDeb) {
+		this.dateDeb = dateDeb;
 	}
 	public LocalDateTime getDateFin() {
 		return dateFin;
@@ -41,10 +68,10 @@ public class Emprunt {
 	public void setDelai(int delai) {
 		this.delai = delai;
 	}
-	public int getIdClient() {
+	public Client getIdClient() {
 		return idClient;
 	}
-	public void setIdClient(int idClient) {
+	public void setIdClient(Client idClient) {
 		this.idClient = idClient;
 	}
 	

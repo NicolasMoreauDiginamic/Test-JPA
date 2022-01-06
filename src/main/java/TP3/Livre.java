@@ -1,5 +1,6 @@
 package TP3;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,7 +14,9 @@ public class Livre {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	@Column(name = "TITRE")
 	private String titre;
+	@Column(name = "AUTEUR")
 	private String auteur;
 	
 	
