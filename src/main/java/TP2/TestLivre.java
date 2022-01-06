@@ -25,7 +25,7 @@ public class TestLivre {
 		
 		Livre newLivre = new Livre();
 		newLivre.setTitre("Les Fables");
-		newLivre.setAuteur("Baudelaire");
+		newLivre.setAuteur("La Fontaine");
 		em.persist(newLivre);
 		
 		transac.commit();
