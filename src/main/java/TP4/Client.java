@@ -1,15 +1,16 @@
 package TP4;
 
 import java.time.LocalDate;
-import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,42 +19,45 @@ public class Client {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idCli;
+	private int id;
+	@Column (name="nom",length = 20)
 	private String nomCli;
+	@Column (name="prenom",length = 20)
 	private String prenomCli;
+	@Column (name = "date_naissance")
 	private LocalDate dateNaissance;
 	
 	@Embedded
 	private Adresse adresseCli;
 	
-	@OneToMany
+	@OneToOne
 	@JoinColumn(name="idBanque")
-	private List<Banque> banque;
+	private Banque banque;
 	
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name="idCompte")
-	private List<Compte> compte;
+	private Compte compte;
 	
 	
-	public List<Compte> getCompte() {
+	public Compte getCompte() {
 		return compte;
 	}
-	public void setCompte(List<Compte> compte) {
+	public void setCompte(Compte compte) {
 		this.compte = compte;
 	}
 	
-	public List<Banque> getBanque() {
+	public Banque getBanque() {
 		return banque;
 	}
-	public void setBanque(List<Banque> banque) {
+	public void setBanque(Banque banque) {
 		this.banque = banque;
 	}
 	
-	public int getIdCli() {
-		return idCli;
+	public int getId() {
+		return id;
 	}
-	public void setIdCli(int idCli) {
-		this.idCli = idCli;
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public String getNomCli() {
@@ -83,6 +87,18 @@ public class Client {
 	public void setAdresseCli(Adresse adresseCli) {
 		this.adresseCli = adresseCli;
 	}
+	public Client(String nomCli, String prenomCli, LocalDate dateNaissance) {
+		super();
+		this.nomCli = nomCli;
+		this.prenomCli = prenomCli;
+		this.dateNaissance = dateNaissance;
+	}
+	public Client() {
+		super();
+		// TODO Auto-generated constructor stub
+	}	
+	
+	
 	
 	
 }

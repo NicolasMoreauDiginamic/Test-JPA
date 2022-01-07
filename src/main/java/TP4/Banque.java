@@ -27,6 +27,16 @@ public class Banque {
 	public void setNomBanque(String nomBanque) {
 		NomBanque = nomBanque;
 	}
+	public Banque(String nomBanque) {
+		super();
+		NomBanque = nomBanque;
+	}
+	public Banque() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
 	
 	
 	
